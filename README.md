@@ -13,6 +13,13 @@ subfolders, containing each cluster and the images will be copied there
 
 The resulting folders will be created in the same directory where `<dir_path>` is located
 
+Can also be used as a module
+
+```
+import cluster
+cluster.cluster(dir_path, [ size1, size2, ... sizeN ])
+```
+
 ## Example
 
 `cluster.py icons 5 10`

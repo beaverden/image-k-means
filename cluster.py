@@ -14,15 +14,10 @@ greeting = """
 #   also creates a folder named 10_cluster with subfolders 0, 2, ..., 9
 """
 
-def main():
-    if len(sys.argv) == 1:
-        print(greeting)
-        exit(0)
 
+def cluster(images_path, clusters_list):
     images = []
     names = []
-    images_path = sys.argv[1]
-    clusters_list = map(int, sys.argv[2:])
     for name in os.listdir(images_path):
         full = os.path.join(images_path, name)
         image = ndimage.imread(full)
@@ -50,14 +45,13 @@ def main():
             if not os.path.exists(folder):
                 os.makedirs(folder, 777, True)
             shutil.copy(names[i], item)
-    """
-    plt.plot(range(20, 40), inertia_data, 'bx-')
-    plt.xlabel('k')
-    plt.ylabel('Sum_of_squared_distances')
-    plt.title('Elbow Method For Optimal k')
-    plt.show()
-    """
 
 
 if __name__ == '__main__':
-    main()
+    if len(sys.argv) == 1:
+        print(greeting)
+        exit(0)
+
+    images_path = sys.argv[1]
+    clusters_list = map(int, sys.argv[2:])
+    cluster(images_path, clusters_list)
